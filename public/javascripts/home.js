@@ -8,7 +8,7 @@ var cSide = $.ajax({
 })
 .done(function(data) {
 	console.log(data);
-	//data.join('')
+	//data.join('');
 	$(data).appendTo('#projects');
 //	return data;
 });

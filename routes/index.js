@@ -18,7 +18,7 @@ var interator = function(index){
 		}
 		else{
 			router.get('/home', function(req,res,next){ 
-				res.render('home', { title: 'These projects are awesome', content: fText})
+				res.render('home', { title: 'These projects are awesome', content: fText.join('')});
 			});
 			
 		}
