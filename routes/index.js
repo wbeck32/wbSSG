@@ -11,21 +11,31 @@ router.get('/', function(req, res, next) {
 router.get('/home', function(req,res,next){
 			//var fText = [];
 
-	fs.readdir('/Users/webeck/Desktop/pcs_work/wbSSG/public/projects', function(err,files) {		
-	var fText = [];
-		files.forEach(function(value, index) {console.log(files.length,index);
-			if (index <= 1){
-				fs.readFile('/Users/webeck/Desktop/pcs_work/wbSSG/public/projects/'+value, function(err, data){
-				fText.push(data.toString());
-				console.log(fText);
+	fs.readdir('./public/projects/', function(err,files) {		
+		var fText = [];
+		if (err){
+			throw err;
+		}
+		else{
+			files.forEach(function(value, index) {
+				if (err){
+					throw err;
+				}
+				else if (index === 2){
+					fs.readFile('./public/projects/'+value, function(err, data){
+					fText.push(data.toString());
+					res.render('home', { title: 'These projects are awesome', content: fText});
+					});
+				} else if (index < 2){
+					
+					fs.readFile('./public/projects/'+value, function(err, data){
+					fText.push(data.toString());
 				});
-			} else if (index === 2){
-				console.log('ELSE: ',fText);
+				
 			}
-			
 		});
-		res.render('home', { title: 'These projects are awesome', files: fText});
-
+			
+		}
 	});
 });
 
